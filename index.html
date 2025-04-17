@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Aplikasi Manajemen Project Klien NextGen (Firebase)</title> <!-- Updated Title -->
+    <title>Aplikasi Manajemen Project Klien NextGen (Firebase)</title>
 
     <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
@@ -31,7 +31,7 @@
             --selected-row-bg: color-mix(in srgb, var(--accent-color) 15%, transparent);
             --button-gap: 8px; --padding-base: 1rem;
             --loading-overlay-bg: rgba(255, 255, 255, 0.7);
-            --menu-bg: var(--card-bg); --menu-shadow: var(--shadow-md); --menu-border: var(--border-color); --menu-item-hover-bg: var(--highlight-bg);
+            /* Removed Menu Variables */
         }
         body.dark-mode {
             --bg-color: #212529; --text-color: #e9ecef; --card-bg: #343a40;
@@ -48,7 +48,7 @@
             --tag-bg: #5a6268; --tag-text: #e9ecef;
             --selected-row-bg: color-mix(in srgb, var(--accent-color) 25%, transparent);
             --loading-overlay-bg: rgba(40, 40, 40, 0.8);
-            --menu-bg: var(--card-bg); --menu-shadow: var(--shadow-md); --menu-border: var(--border-color); --menu-item-hover-bg: var(--highlight-bg);
+            /* Removed Menu Variables */
         }
         /* --- GENERAL --- */
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -147,16 +147,9 @@
         .priority-Medium { background-color: var(--priority-medium-bg); color: var(--priority-medium-text); border-color: color-mix(in srgb, var(--priority-medium-text), transparent 50%);}
         .priority-Low { background-color: var(--priority-low-bg); color: var(--priority-low-text); border-color: color-mix(in srgb, var(--priority-low-text), transparent 50%);}
         .tag-badge { display: inline-block; background-color: var(--tag-bg); color: var(--tag-text); padding: 3px 8px; border-radius: 4px; font-size: 0.8rem; margin: 2px; white-space: nowrap; }
-        /* Action Dropdown Menu Styles */
-        .action-menu-container { position: relative; display: inline-block; vertical-align: middle;}
-        .action-menu-trigger { background: none; border: 1px solid transparent; color: var(--text-color); font-size: 1.2rem; font-weight: bold; padding: 2px 8px; line-height: 1; border-radius: 5px; }
-        .action-menu-trigger:hover, .action-menu-trigger:focus { border-color: var(--input-border); background-color: var(--highlight-bg); }
-        .action-menu-dropdown { display: none; position: absolute; right: 0; top: 100%; background-color: var(--menu-bg); border: 1px solid var(--menu-border); border-radius: 5px; box-shadow: var(--menu-shadow); padding: 5px 0; list-style: none; margin: 2px 0 0; min-width: 160px; z-index: 10; }
-        .action-menu-dropdown.show { display: block; }
-        .action-menu-dropdown li button { display: flex; width: 100%; padding: 8px 15px; text-align: left; background: none; border: none; color: var(--text-color); font-size: 0.9rem; white-space: nowrap; border-radius: 0; gap: 8px; align-items: center; }
-        .action-menu-dropdown li button:hover, .action-menu-dropdown li button:focus { background-color: var(--menu-item-hover-bg); }
-        .action-menu-dropdown li button span { width: 1.2em; display: inline-block; text-align: center; margin-right: 5px; }
-        .action-menu-dropdown li button.danger { color: var(--danger-color); }
+        /* Action Buttons (Directly Visible) */
+        .action-buttons { white-space: nowrap; display: inline-flex; gap: 5px; align-items: center; }
+        button.action-button { margin-right: 0; padding: 5px 8px; font-size: 0.8rem; gap: 4px; }
 
         /* Pagination */
         #paginationControls { display: flex; justify-content: space-between; align-items: center; padding: var(--padding-base) 0; margin-top: var(--padding-base); border-top: 1px solid var(--border-color); flex-wrap: wrap; gap: var(--padding-base); }
@@ -204,7 +197,7 @@
         .empty-message::before { content: '🤷‍♀️'; display: block; font-size: 2.5rem; margin-bottom: 15px; opacity: 0.5; }
         /* --- RESPONSIVE --- */
         @media (max-width: 992px) { .form-grid { grid-template-columns: 1fr; gap: 0; } .modal-content { max-width: 600px; } .list-actions { flex-direction: column; align-items: stretch;} #paginationControls { flex-direction: column; align-items: stretch; text-align: center;} #paginationControls .page-nav { justify-content: center;} .report-filters { flex-direction: column; align-items: stretch; gap: 15px;} .report-filters .date-range-filter { flex-direction: column; gap: 15px; align-items: stretch; } .report-box[style*="grid-column: span 2"] { grid-column: span 1; } }
-        @media (max-width: 768px) { body { font-size: 15px; } header { padding: 12px 15px; } header h1 { font-size: 1.1rem; } .header-controls { gap: 8px; } .nav-menu { display: none; flex-direction: column; background: var(--header-bg); position: absolute; top: 58px; right: 10px; width: 200px; padding: 15px; box-shadow: var(--shadow-md); border-radius: 8px; border: 1px solid var(--border-color); border-top: none; } .nav-menu.show { display: flex; } .hamburger { display: block; } main { margin: 15px; padding: 15px; } h2 { font-size: 1.4rem; margin-bottom: 20px; } .filter-area { grid-template-columns: 1fr; gap: 15px; } .date-range-filter { flex-direction: column; gap: 15px; align-items: stretch; } .list-actions button { width: 100%; } .dashboard-stats { grid-template-columns: 1fr; gap: 15px; } .stat-card { padding: 20px; } .stat-card p { font-size: 1.8rem; } .modal-content { width: 95%; margin: 8% auto; padding: 20px; max-width: 95%; } th, td { padding: 10px 8px; font-size: 0.85rem;} th.col-checkbox, td.col-checkbox { padding-left: 8px; padding-right: 8px; width: 35px;} .table-container { border-radius: 6px; } th:first-child { border-top-left-radius: 6px; } th:last-child { border-top-right-radius: 6px; } tbody tr:last-child td:first-child { border-bottom-left-radius: 6px; } tbody tr:last-child td:last-child { border-bottom-right-radius: 6px; } table { min-width: 1100px; } #toastContainer { right: 15px; bottom: 15px; width: calc(100% - 30px); gap: 10px;} .toast { min-width: auto; padding: 12px 20px; } .report-container { grid-template-columns: 1fr; gap: 20px;} .chart-container { height: 280px; } button.action-button { padding: 8px 10px; } .action-menu-dropdown { right: auto; left: 0; } #bulkActionsContainer { flex-direction: column; align-items: stretch; } #bulkActionsContainer div { display: flex; width: 100%; } #bulkActionsContainer div select { flex-grow: 1; } #bulkActionsContainer button { width: 100%; justify-content: center; } }
+        @media (max-width: 768px) { body { font-size: 15px; } header { padding: 12px 15px; } header h1 { font-size: 1.1rem; } .header-controls { gap: 8px; } .nav-menu { display: none; flex-direction: column; background: var(--header-bg); position: absolute; top: 58px; right: 10px; width: 200px; padding: 15px; box-shadow: var(--shadow-md); border-radius: 8px; border: 1px solid var(--border-color); border-top: none; } .nav-menu.show { display: flex; } .hamburger { display: block; } main { margin: 15px; padding: 15px; } h2 { font-size: 1.4rem; margin-bottom: 20px; } .filter-area { grid-template-columns: 1fr; gap: 15px; } .date-range-filter { flex-direction: column; gap: 15px; align-items: stretch; } .list-actions button { width: 100%; } .dashboard-stats { grid-template-columns: 1fr; gap: 15px; } .stat-card { padding: 20px; } .stat-card p { font-size: 1.8rem; } .modal-content { width: 95%; margin: 8% auto; padding: 20px; max-width: 95%; } th, td { padding: 10px 8px; font-size: 0.85rem;} th.col-checkbox, td.col-checkbox { padding-left: 8px; padding-right: 8px; width: 35px;} .table-container { border-radius: 6px; } th:first-child { border-top-left-radius: 6px; } th:last-child { border-top-right-radius: 6px; } tbody tr:last-child td:first-child { border-bottom-left-radius: 6px; } tbody tr:last-child td:last-child { border-bottom-right-radius: 6px; } table { min-width: 1100px; } #toastContainer { right: 15px; bottom: 15px; width: calc(100% - 30px); gap: 10px;} .toast { min-width: auto; padding: 12px 20px; } .report-container { grid-template-columns: 1fr; gap: 20px;} .chart-container { height: 280px; } button.action-button { padding: 8px 10px; } /* Removed action dropdown style */ #bulkActionsContainer { flex-direction: column; align-items: stretch; } #bulkActionsContainer div { display: flex; width: 100%; } #bulkActionsContainer div select { flex-grow: 1; } #bulkActionsContainer button { width: 100%; justify-content: center; } }
     </style>
 </head>
 <body>
@@ -357,7 +350,7 @@
     let currentPage = 1; let itemsPerPage = 15;
     let selectedOrderIds = new Set();
     let clientReportSort = { column: 2, direction: 'desc' };
-    let currentOpenMenu = null; // Track open action menu
+    // Removed: let currentOpenMenu = null;
 
     // --- UTILITIES ---
     const $ = (selector) => document.querySelector(selector);
@@ -394,12 +387,11 @@
     async function updatePriority(firestoreId, newPriority) { if (!db) { showToast("Koneksi Database Gagal!", "error"); return; } showLoading(); try { const docRef = ordersCollection.doc(firestoreId); await docRef.update({ priority: newPriority }); const index = orders.findIndex(o => o.firestoreId === firestoreId); if (index !== -1) orders[index].priority = newPriority; applyFilterAndSort(); showToast("Prioritas diperbarui.", "info"); } catch (error) { console.error("Error updating priority: ", error); showToast("Gagal memperbarui prioritas.", "error"); } finally { hideLoading(); } }
     async function archiveOrder(firestoreId) { if (!db) { showToast("Koneksi Database Gagal!", "error"); return; } const order = orders.find(o => o.firestoreId === firestoreId); if (!order) return; if (confirm(`Arsipkan pesanan "${order.clientName}"?`)) { showLoading(); try { const docRef = ordersCollection.doc(firestoreId); await docRef.update({ isArchived: true }); order.isArchived = true; applyFilterAndSort(); showToast(`Pesanan "${order.clientName}" diarsipkan.`, "info"); } catch (error) { console.error("Error archiving order: ", error); showToast("Gagal mengarsipkan pesanan.", "error"); } finally { hideLoading(); } } }
     async function unarchiveOrder(firestoreId) { if (!db) { showToast("Koneksi Database Gagal!", "error"); return; } showLoading(); try { const docRef = ordersCollection.doc(firestoreId); await docRef.update({ isArchived: false }); const order = orders.find(o => o.firestoreId === firestoreId); if (order) order.isArchived = false; applyFilterAndSort(); showToast(`Pesanan dipulihkan.`, "info"); } catch (error) { console.error("Error unarchiving order: ", error); showToast("Gagal memulihkan pesanan.", "error"); } finally { hideLoading(); } }
-    async function deleteOrderPermanently(firestoreId) { // Now handles both active and archived
+    async function deleteOrderPermanently(firestoreId) { // Handles both active and archived
         if (!db) { showToast("Koneksi Database Gagal!", "error"); return; }
         const orderIndex = orders.findIndex(o => o.firestoreId === firestoreId);
         if (orderIndex === -1) return;
         const orderToDelete = orders[orderIndex];
-        // Confirmation message adapted slightly depending on state
         const confirmationMsg = `HAPUS PERMANEN pesanan "${orderToDelete.clientName}"? (${orderToDelete.isArchived ? 'Arsip' : 'Aktif'}) Tindakan ini tidak bisa dibatalkan.`;
         if (confirm(confirmationMsg)) {
             showLoading();
@@ -423,8 +415,8 @@
     function openEditModal(firestoreId) { const order = orders.find(o => o.firestoreId === firestoreId); if (!order) return; $('#editId').value = order.firestoreId; $('#editClientName').value = order.clientName; $('#editClientContact').value = order.clientContact || ''; $('#editProjectType').value = order.projectType; $('#editProjectPrice').value = order.projectPrice || ''; $('#editOrderDate').value = order.orderDate; $('#editDeadline').value = order.deadline; $('#editPriority').value = order.priority; $('#editStatus').value = order.status; $('#editAttachmentLink').value = order.attachmentLink || ''; $('#editProjectTags').value = (order.projectTags || []).join(', '); $('#editNotes').value = order.notes || ''; $$('#editForm .error-message').forEach(el => el.style.display = 'none'); $$('#editForm .invalid').forEach(el => el.classList.remove('invalid')); editModal.style.display = "block"; $('#editClientName').focus(); }
     function closeEditModal() { editModal.style.display = "none"; editForm.reset(); }
     editForm.addEventListener("submit", async function(e) { e.preventDefault(); if (!db) { showToast("Koneksi Database Gagal!", "error"); return; } if (!validateForm('editForm')) { showToast("Perbaiki error form edit.", "error"); this.querySelector('.invalid')?.focus(); return; } const firestoreId = $('#editId').value; if (!firestoreId) { showToast("ID Pesanan tidak valid.", "error"); return; } const updatedData = { clientName: $('#editClientName').value.trim(), clientContact: $('#editClientContact').value.trim(), projectType: $('#editProjectType').value, projectPrice: parseFloat($('#editProjectPrice').value) || 0, orderDate: $('#editOrderDate').value, deadline: $('#editDeadline').value, priority: $('#editPriority').value, status: $('#editStatus').value, attachmentLink: $('#editAttachmentLink').value.trim(), projectTags: parseTags($('#editProjectTags').value), notes: $('#editNotes').value.trim(), }; showLoading(); try { const docRef = ordersCollection.doc(firestoreId); await docRef.update(updatedData); const index = orders.findIndex(o => o.firestoreId === firestoreId); if (index !== -1) { orders[index] = { ...orders[index], ...updatedData }; } closeEditModal(); applyFilterAndSort(); showToast("Pesanan berhasil diperbarui!", "success"); } catch (error) { console.error("Error updating document: ", error); showToast("Gagal memperbarui pesanan.", "error"); } finally { hideLoading(); } });
-    window.onclick = (event) => { if (event.target == editModal) closeEditModal(); const openMenu = document.querySelector('.action-menu-dropdown.show'); if (openMenu && !openMenu.contains(event.target) && !event.target.closest('.action-menu-trigger')) { openMenu.classList.remove('show'); currentOpenMenu = null; } }
-    window.addEventListener('keydown', (event) => { if (event.key === 'Escape') { if (editModal.style.display === "block") closeEditModal(); const openMenu = document.querySelector('.action-menu-dropdown.show'); if (openMenu) { openMenu.classList.remove('show'); currentOpenMenu = null; } } });
+    window.onclick = (event) => { if (event.target == editModal) closeEditModal(); /* Removed dropdown close logic */ }
+    window.addEventListener('keydown', (event) => { if (event.key === 'Escape') { if (editModal.style.display === "block") closeEditModal(); /* Removed dropdown close logic */ } });
 
     // --- FILTER, SORT, & PAGINATION ---
     $('#searchInput').addEventListener('input', () => debounce(resetAndFilter)); $('#statusFilter').addEventListener('change', resetAndFilter); $('#priorityFilter').addEventListener('change', resetAndFilter); $('#tagFilter').addEventListener('input', () => debounce(resetAndFilter)); $('#startDateFilter').addEventListener('change', resetAndFilter); $('#endDateFilter').addEventListener('change', resetAndFilter); $('#showArchived').addEventListener('change', resetAndFilter);
@@ -450,17 +442,19 @@
             const prioritySelectHtml = `<select class="inline-priority-select" onchange="updatePriority('${order.firestoreId}', this.value)" ${order.isArchived ? 'disabled' : ''} title="Ubah Prioritas"> <option value="Low" ${order.priority === "Low" ? "selected" : ""}>Rendah</option> <option value="Medium" ${order.priority === "Medium" ? "selected" : ""}>Sedang</option> <option value="High" ${order.priority === "High" ? "selected" : ""}>Tinggi</option> </select>`;
             const tagsHtml = (order.projectTags && order.projectTags.length > 0) ? order.projectTags.map(tag => `<span class="tag-badge" title="${tag}">${tag.length > 15 ? tag.substring(0, 13)+'...' : tag}</span>`).join('') : '-';
             const linkHtml = order.attachmentLink ? `<a href="${sanitizeUrl(order.attachmentLink)}" target="_blank" rel="noopener noreferrer" title="${order.attachmentLink}">Link <span class="link-icon">🔗</span></a>` : '-';
-            let actionMenuLis = '';
+
+            // Reverted Action Buttons
+            let actionButtonsHtml = '';
             if (order.isArchived) {
-                actionMenuLis = `<li><button class="secondary" onclick="unarchiveOrder('${order.firestoreId}')" title="Pulihkan"><span>⤴️</span> Pulihkan</button></li> <li><button class="danger" onclick="deleteOrderPermanently('${order.firestoreId}')" title="Hapus Permanen"><span>🗑️</span> Hapus Permanen</button></li>`;
+                actionButtonsHtml = `<button class="secondary action-button" onclick="unarchiveOrder('${order.firestoreId}')" title="Pulihkan"><span>⤴️</span></button> <button class="danger action-button" onclick="deleteOrderPermanently('${order.firestoreId}')" title="Hapus Permanen"><span>🗑️</span></button>`;
             } else if (order.status === 'Completed') {
-                actionMenuLis = `<li><button onclick="openEditModal('${order.firestoreId}')" title="Edit Pesanan"><span>✏️</span> Edit</button></li> <li><button class="revision" onclick="requestRevision('${order.firestoreId}')" title="Minta Revisi"><span>🔄</span> Minta Revisi</button></li> <li><button class="info" onclick="duplicateOrder('${order.firestoreId}')" title="Duplikasi Pesanan"><span>➕</span> Duplikasi</button></li> <li><button class="warning" onclick="archiveOrder('${order.firestoreId}')" title="Arsipkan Pesanan"><span>📁</span> Arsipkan</button></li> <li><button class="danger" onclick="deleteOrderPermanently('${order.firestoreId}')" title="Hapus Permanen"><span>🗑️</span> Hapus</button></li>`; // Added Delete for active
+                actionButtonsHtml = `<button class="secondary action-button" onclick="openEditModal('${order.firestoreId}')" title="Edit"><span>✏️</span></button> <button class="revision action-button" onclick="requestRevision('${order.firestoreId}')" title="Minta Revisi"><span>🔄</span></button> <button class="info action-button" onclick="duplicateOrder('${order.firestoreId}')" title="Duplikasi"><span>➕</span></button> <button class="warning action-button" onclick="archiveOrder('${order.firestoreId}')" title="Arsipkan"><span>📁</span></button> <button class="danger action-button" onclick="deleteOrderPermanently('${order.firestoreId}')" title="Hapus"><span>🗑️</span></button>`;
             } else if (order.status === 'Delivered') {
-                 actionMenuLis = `<li><button onclick="openEditModal('${order.firestoreId}')" title="Edit Pesanan"><span>✏️</span> Edit</button></li> <li><button class="info" onclick="duplicateOrder('${order.firestoreId}')" title="Duplikasi Pesanan"><span>➕</span> Duplikasi</button></li> <li><button class="warning" onclick="archiveOrder('${order.firestoreId}')" title="Arsipkan Pesanan"><span>📁</span> Arsipkan</button></li> <li><button class="danger" onclick="deleteOrderPermanently('${order.firestoreId}')" title="Hapus Permanen"><span>🗑️</span> Hapus</button></li>`; // Added Delete for active
+                 actionButtonsHtml = `<button class="secondary action-button" onclick="openEditModal('${order.firestoreId}')" title="Edit"><span>✏️</span></button> <button class="info action-button" onclick="duplicateOrder('${order.firestoreId}')" title="Duplikasi"><span>➕</span></button> <button class="warning action-button" onclick="archiveOrder('${order.firestoreId}')" title="Arsipkan"><span>📁</span></button> <button class="danger action-button" onclick="deleteOrderPermanently('${order.firestoreId}')" title="Hapus"><span>🗑️</span></button>`;
             } else { // Pending or In Progress
-                 actionMenuLis = `<li><button onclick="openEditModal('${order.firestoreId}')" title="Edit Pesanan"><span>✏️</span> Edit</button></li> <li><button class="info" onclick="duplicateOrder('${order.firestoreId}')" title="Duplikasi Pesanan"><span>➕</span> Duplikasi</button></li> <li><button class="warning" onclick="archiveOrder('${order.firestoreId}')" title="Arsipkan Pesanan"><span>📁</span> Arsipkan</button></li> <li><button class="danger" onclick="deleteOrderPermanently('${order.firestoreId}')" title="Hapus Permanen"><span>🗑️</span> Hapus</button></li>`; // Added Delete for active
+                 actionButtonsHtml = `<button class="secondary action-button" onclick="openEditModal('${order.firestoreId}')" title="Edit"><span>✏️</span></button> <button class="info action-button" onclick="duplicateOrder('${order.firestoreId}')" title="Duplikasi"><span>➕</span></button> <button class="warning action-button" onclick="archiveOrder('${order.firestoreId}')" title="Arsipkan"><span>📁</span></button> <button class="danger action-button" onclick="deleteOrderPermanently('${order.firestoreId}')" title="Hapus"><span>🗑️</span></button>`;
             }
-            const actionDropdownHtml = `<div class="action-menu-container"> <button class="action-menu-trigger" aria-label="Aksi untuk ${order.clientName}" title="Aksi Lainnya">⋮</button> <ul class="action-menu-dropdown">${actionMenuLis}</ul> </div>`;
+
             const notesDisplay = (order.notes || '-').substring(0, 40); const notesEllipsis = order.notes && order.notes.length > 40 ? '...' : ''; const notesTitle = order.notes || 'Tidak ada catatan';
             const contactDisplay = (order.clientContact || '-').substring(0, 20); const contactEllipsis = order.clientContact && order.clientContact.length > 20 ? '...' : ''; const contactTitle = order.clientContact || 'Tidak ada kontak';
             tr.innerHTML = `
@@ -472,17 +466,17 @@
                 <td data-label="Status"> <select class="status-select" onchange="updateStatus('${order.firestoreId}', this.value)" ${order.isArchived || order.status === 'Delivered' ? 'disabled' : ''} title="Ubah Status Pesanan"> <option value="Pending" ${order.status === "Pending" ? "selected" : ""}>Pending</option> <option value="In Progress" ${order.status === "In Progress" ? "selected" : ""}>In Progress</option> <option value="Completed" ${order.status === "Completed" ? "selected" : ""}>Completed</option> <option value="Delivered" ${order.status === "Delivered" ? "selected" : ""}>Delivered</option> </select> </td>
                 <td data-label="Tags" class="col-tags">${tagsHtml}</td> <td data-label="Link" class="col-link">${linkHtml}</td>
                 <td data-label="Catatan" class="col-notes" title="${notesTitle}">${notesDisplay}${notesEllipsis}</td>
-                <td data-label="Aksi">${actionDropdownHtml}</td> `;
+                <td data-label="Aksi" class="action-buttons">${actionButtonsHtml}</td> `; // Changed TD content back
             fragment.appendChild(tr);
         });
-        tbody.appendChild(fragment); addRowActionListeners();
+        tbody.appendChild(fragment); addCheckboxListeners(); // Still need this for bulk actions
     }
 
      // --- Action Menu Dropdown Logic ---
-     function addRowActionListeners() { const tableBody = $('#orderTable'); if (!tableBody) return; tableBody.addEventListener('click', (event) => { const trigger = event.target.closest('.action-menu-trigger'); if (trigger) { event.stopPropagation(); const dropdown = trigger.nextElementSibling; closeOpenMenus(dropdown); dropdown.classList.toggle('show'); currentOpenMenu = dropdown.classList.contains('show') ? dropdown : null; } }); addCheckboxListeners(); }
-    function closeOpenMenus(excludeMenu = null) { $$('.action-menu-dropdown.show').forEach(menu => { if (menu !== excludeMenu) menu.classList.remove('show'); }); if (excludeMenu === null) currentOpenMenu = null; }
+     // Removed addRowActionListeners and closeOpenMenus functions as they are no longer needed
 
     // --- BULK ACTIONS (FIRESTORE) ---
+    // (Bulk action functions and listeners remain the same)
     function addCheckboxListeners() { $$('.row-checkbox').forEach(checkbox => { checkbox.addEventListener('change', (e) => { const firestoreId = e.target.dataset.id; const tr = e.target.closest('tr'); if (e.target.checked) { selectedOrderIds.add(firestoreId); tr?.classList.add('selected'); } else { selectedOrderIds.delete(firestoreId); tr?.classList.remove('selected'); } updateBulkActionUI(); }); }); }
     $('#selectAllCheckbox')?.addEventListener('change', (e) => { const isChecked = e.target.checked; $$('.row-checkbox').forEach(checkbox => { const firestoreId = checkbox.dataset.id; const tr = checkbox.closest('tr'); checkbox.checked = isChecked; if (isChecked) { selectedOrderIds.add(firestoreId); tr?.classList.add('selected'); } else { selectedOrderIds.delete(firestoreId); tr?.classList.remove('selected'); } }); updateBulkActionUI(); });
     function updateBulkActionUI() { const count = selectedOrderIds.size; const container = $('#bulkActionsContainer'); const countSpan = $('#selectedCount'); const changeStatusBtn = $('#bulkChangeStatusBtn'); const archiveBtn = $('#bulkArchiveBtn'); const deleteBtn = $('#bulkDeleteBtn'); const statusSelect = $('#bulkStatusChange'); if (!container || !countSpan || !changeStatusBtn || !archiveBtn || !deleteBtn || !statusSelect) return; if (count > 0) { container.classList.add('visible'); countSpan.textContent = count; let hasActive = false; let hasArchived = false; selectedOrderIds.forEach(id => { const order = orders.find(o => o.firestoreId === id); if (order) { if (order.isArchived) hasArchived = true; else hasActive = true; } }); const currentViewIsArchived = $('#showArchived').checked; const canArchive = hasActive && !hasArchived; const canDelete = hasArchived && !hasActive && currentViewIsArchived; changeStatusBtn.disabled = !statusSelect.value || !canArchive; archiveBtn.disabled = !canArchive; deleteBtn.disabled = !canDelete; } else { container.classList.remove('visible'); countSpan.textContent = 0; changeStatusBtn.disabled = true; archiveBtn.disabled = true; deleteBtn.disabled = true; statusSelect.value = ''; } }
