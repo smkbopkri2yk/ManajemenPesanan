@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Aplikasi Manajemen Project Klien NextGen (Firebase)</title>
+    <title>Aplikasi Manajemen Project Klien NextGen (Firebase)</title> <!-- Updated Title -->
 
     <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
@@ -31,12 +31,8 @@
             --selected-row-bg: color-mix(in srgb, var(--accent-color) 15%, transparent);
             --button-gap: 8px; --padding-base: 1rem;
             --loading-overlay-bg: rgba(255, 255, 255, 0.7);
-            --menu-bg: var(--card-bg);
-            --menu-shadow: var(--shadow-md);
-            --menu-border: var(--border-color);
-            --menu-item-hover-bg: var(--highlight-bg);
+            --menu-bg: var(--card-bg); --menu-shadow: var(--shadow-md); --menu-border: var(--border-color); --menu-item-hover-bg: var(--highlight-bg);
         }
-
         body.dark-mode {
             --bg-color: #212529; --text-color: #e9ecef; --card-bg: #343a40;
             --header-bg: #212529; --header-text: #fff; --accent-color: #0d6efd;
@@ -52,25 +48,19 @@
             --tag-bg: #5a6268; --tag-text: #e9ecef;
             --selected-row-bg: color-mix(in srgb, var(--accent-color) 25%, transparent);
             --loading-overlay-bg: rgba(40, 40, 40, 0.8);
-            --menu-bg: var(--card-bg);
-            --menu-shadow: var(--shadow-md);
-            --menu-border: var(--border-color);
-            --menu-item-hover-bg: var(--highlight-bg);
+            --menu-bg: var(--card-bg); --menu-shadow: var(--shadow-md); --menu-border: var(--border-color); --menu-item-hover-bg: var(--highlight-bg);
         }
-
         /* --- GENERAL --- */
         * { box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; }
         body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; background-color: var(--bg-color); color: var(--text-color); line-height: 1.6; transition: background-color 0.3s, color 0.3s; font-size: 16px; position: relative; }
         *:focus-visible { outline: 2px solid var(--accent-color); outline-offset: 2px; box-shadow: 0 0 0 3px var(--focus-ring-color); border-radius: 5px; }
         *:focus:not(:focus-visible) { outline: none; }
-
         /* --- Loading Overlay --- */
         #loadingOverlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: var(--loading-overlay-bg); backdrop-filter: blur(3px); display: flex; justify-content: center; align-items: center; z-index: 2000; opacity: 0; visibility: hidden; transition: opacity 0.3s, visibility 0.3s; }
         #loadingOverlay.show { opacity: 1; visibility: visible; }
         .spinner { width: 50px; height: 50px; border: 5px solid var(--highlight-bg); border-top-color: var(--accent-color); border-radius: 50%; animation: spin 1s linear infinite; }
         @keyframes spin { to { transform: rotate(360deg); } }
-
         /* --- Basic Element Styling --- */
         button, input, select, textarea { font-family: inherit; font-size: 1rem; background-color: var(--card-bg); color: var(--text-color); border: 1px solid var(--input-border); border-radius: 5px; padding: 10px 15px; transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; }
         input:focus, select:focus, textarea:focus { border-color: var(--accent-color); box-shadow: 0 0 0 3px var(--focus-ring-color); outline: none; }
@@ -84,7 +74,6 @@
         button.revision { background-color: var(--revision-color); } button.revision:hover { background-color: color-mix(in srgb, var(--revision-color), black 10%); } button.revision:active { background-color: color-mix(in srgb, var(--revision-color), black 20%); }
         button.info { background-color: var(--info-color); color: white; } button.info:hover { background-color: color-mix(in srgb, var(--info-color), black 10%); } button.info:active { background-color: color-mix(in srgb, var(--info-color), black 20%); }
         button:disabled { cursor: not-allowed; opacity: 0.65; box-shadow: none; }
-
         /* --- Layout & Sections --- */
         header { background: var(--header-bg); color: var(--header-text); padding: calc(var(--padding-base)*0.8) calc(var(--padding-base)*1.5); display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: var(--shadow-sm); }
         header h1 { margin: 0; font-size: 1.4rem; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -99,7 +88,6 @@
         section.active { display: block; animation: fadeIn 0.5s ease; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         h2 { margin-bottom: calc(var(--padding-base)*1.25); color: var(--text-color); border-bottom: 1px solid var(--border-color); padding-bottom: calc(var(--padding-base)*0.75); font-weight: 600; font-size: 1.6rem; }
-
         /* --- Dashboard --- */
         .dashboard-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: calc(var(--padding-base)*1.25); margin-bottom: calc(var(--padding-base)*1.75); }
         .stat-card { background: var(--card-bg); padding: calc(var(--padding-base)*1.25); border-radius: 8px; text-align: center; border: 1px solid var(--border-color); border-left: 5px solid var(--accent-color); transition: transform 0.2s ease, box-shadow 0.2s ease; }
@@ -108,7 +96,6 @@
         .stat-card p { font-size: 2rem; font-weight: 600; color: var(--text-color); }
         .stat-card.pending { border-left-color: var(--warning-color); } .stat-card.in-progress { border-left-color: var(--info-color); } .stat-card.completed { border-left-color: var(--success-color); } .stat-card.delivered { border-left-color: var(--revision-color); }
         .recent-orders h3 { margin-bottom: var(--padding-base); font-size: 1.2rem; font-weight: 600;}
-
         /* --- Forms --- */
         .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 calc(var(--padding-base)*1.25); }
         form label { display: block; margin: var(--padding-base) 0 6px; font-weight: 500; font-size: 0.95rem; }
@@ -118,7 +105,6 @@
         .error-message { color: var(--danger-color); font-size: 0.88rem; display: none; margin-top: 5px; }
         form input.invalid, form select.invalid, form textarea.invalid { border-color: var(--danger-color); box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.25); }
         form button[type="submit"] { width: auto; padding: 12px 30px; margin-top: var(--padding-base); }
-
         /* --- List View --- */
         .list-controls { background-color: var(--highlight-bg); padding: var(--padding-base); border-radius: 8px; margin-bottom: calc(var(--padding-base)*1.25); border: 1px solid var(--border-color); }
         .filter-area { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: var(--padding-base); align-items: end; margin-bottom: var(--padding-base); }
@@ -134,7 +120,6 @@
         #bulkActionsContainer label { margin-right: 5px; font-weight: 500; font-size: 0.9rem;}
         #bulkActionsContainer select { padding: 6px 10px; font-size: 0.9rem; width: auto; margin-right: 5px; }
         #bulkActionsContainer button { font-size: 0.9rem; padding: 6px 12px; gap: 4px;}
-
         /* Table Styles */
         .table-container { overflow-x: auto; margin-top: var(--padding-base); border: 1px solid var(--border-color); border-radius: 8px; }
         table { width: 100%; border-collapse: separate; border-spacing: 0; margin-top: 0; }
@@ -156,24 +141,22 @@
         .deadline-soon { background-color: color-mix(in srgb, var(--priority-medium-bg) 70%, transparent) !important; }
         .deadline-past { background-color: color-mix(in srgb, var(--priority-high-bg) 70%, transparent) !important; }
         td[data-label="Deadline"] span { font-size: 0.85em; opacity: 0.9; }
-        .status-select, .inline-priority-select { width: auto; padding: 6px 10px; font-size: 0.9rem; border-radius: 5px; margin-left: 5px; vertical-align: middle;} /* Combined inline selects */
+        .status-select, .inline-priority-select { width: auto; padding: 6px 10px; font-size: 0.9rem; border-radius: 5px; margin-left: 5px; vertical-align: middle;}
         .priority-badge { padding: 4px 10px; border-radius: 15px; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; border: 1px solid transparent;}
         .priority-High { background-color: var(--priority-high-bg); color: var(--priority-high-text); border-color: color-mix(in srgb, var(--priority-high-text), transparent 50%); }
         .priority-Medium { background-color: var(--priority-medium-bg); color: var(--priority-medium-text); border-color: color-mix(in srgb, var(--priority-medium-text), transparent 50%);}
         .priority-Low { background-color: var(--priority-low-bg); color: var(--priority-low-text); border-color: color-mix(in srgb, var(--priority-low-text), transparent 50%);}
         .tag-badge { display: inline-block; background-color: var(--tag-bg); color: var(--tag-text); padding: 3px 8px; border-radius: 4px; font-size: 0.8rem; margin: 2px; white-space: nowrap; }
-
         /* Action Dropdown Menu Styles */
-        .action-menu-container { position: relative; display: inline-block; }
+        .action-menu-container { position: relative; display: inline-block; vertical-align: middle;}
         .action-menu-trigger { background: none; border: 1px solid transparent; color: var(--text-color); font-size: 1.2rem; font-weight: bold; padding: 2px 8px; line-height: 1; border-radius: 5px; }
         .action-menu-trigger:hover, .action-menu-trigger:focus { border-color: var(--input-border); background-color: var(--highlight-bg); }
         .action-menu-dropdown { display: none; position: absolute; right: 0; top: 100%; background-color: var(--menu-bg); border: 1px solid var(--menu-border); border-radius: 5px; box-shadow: var(--menu-shadow); padding: 5px 0; list-style: none; margin: 2px 0 0; min-width: 160px; z-index: 10; }
         .action-menu-dropdown.show { display: block; }
-        .action-menu-dropdown li button { display: flex; /* Use flex for icon alignment */ width: 100%; padding: 8px 15px; text-align: left; background: none; border: none; color: var(--text-color); font-size: 0.9rem; white-space: nowrap; border-radius: 0; gap: 8px; align-items: center; }
+        .action-menu-dropdown li button { display: flex; width: 100%; padding: 8px 15px; text-align: left; background: none; border: none; color: var(--text-color); font-size: 0.9rem; white-space: nowrap; border-radius: 0; gap: 8px; align-items: center; }
         .action-menu-dropdown li button:hover, .action-menu-dropdown li button:focus { background-color: var(--menu-item-hover-bg); }
-        .action-menu-dropdown li button span { /* Icon */ width: 1.2em; display: inline-block; text-align: center; margin-right: 5px; }
+        .action-menu-dropdown li button span { width: 1.2em; display: inline-block; text-align: center; margin-right: 5px; }
         .action-menu-dropdown li button.danger { color: var(--danger-color); }
-
 
         /* Pagination */
         #paginationControls { display: flex; justify-content: space-between; align-items: center; padding: var(--padding-base) 0; margin-top: var(--padding-base); border-top: 1px solid var(--border-color); flex-wrap: wrap; gap: var(--padding-base); }
@@ -183,7 +166,6 @@
         #paginationControls .page-nav { display: flex; gap: 8px; }
         #paginationControls .page-nav button { font-size: 0.9rem; padding: 6px 12px; gap: 5px; }
         #paginationControls #pageInfo { font-size: 0.9rem; font-weight: 500; text-align: center; flex-grow: 1; }
-
         /* Reports */
         .report-filters { background-color: var(--highlight-bg); padding: var(--padding-base); border-radius: 8px; margin-bottom: calc(var(--padding-base)*1.25); border: 1px solid var(--border-color); display: flex; flex-wrap: wrap; gap: var(--padding-base); align-items: end; }
         .report-filters label { font-size: 0.9rem; margin-bottom: 5px; display: block; font-weight: 500; }
@@ -195,14 +177,13 @@
         .report-box .report-content { flex-grow: 1; }
         .chart-container { position: relative; height: 300px; width: 100%; flex-shrink: 0; }
         #clientSummaryTableContainer { max-height: 350px; overflow-y: auto; border: 1px solid var(--border-color); border-radius: 5px; margin-top: 10px; }
-        #clientSummaryTable th { position: sticky; top: 0; z-index: 1; cursor: pointer; background-color: var(--highlight-bg); /* Ensure sticky header has background */ }
+        #clientSummaryTable th { position: sticky; top: 0; z-index: 1; cursor: pointer; background-color: var(--highlight-bg); }
         #clientSummaryTable td { padding: 8px 12px; font-size: 0.9rem; } #clientSummaryTable tr:last-child td { border-bottom: none; }
         #reportProjectValue ul { list-style: none; padding: 0; margin: 0;}
         #reportProjectValue li { margin-bottom: 8px; padding-left: 20px; position: relative; font-size: 0.95rem; }
         #reportProjectValue li span.status-color-dot { position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 12px; height: 12px; background-color: #ccc; border-radius: 50%; }
         #reportProjectValue li strong { float: right; font-weight: 600;}
         #reportProjectValue li.total-value { margin-top: var(--padding-base); padding-top: calc(var(--padding-base)*0.75); border-top: 1px solid var(--border-color); font-weight: bold; }
-
         /* Modal */
         .modal { display: none; position: fixed; z-index: 1001; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0, 0, 0, 0.6); backdrop-filter: blur(3px); animation: fadeIn 0.3s ease; }
         .modal-content { background-color: var(--card-bg); margin: 5% auto; padding: calc(var(--padding-base)*1.75); border: none; width: 90%; max-width: 850px; border-radius: 10px; position: relative; box-shadow: var(--shadow-md); animation: slideIn 0.4s ease; }
@@ -210,7 +191,6 @@
         .close-btn { color: var(--text-color); opacity: 0.6; position: absolute; top: calc(var(--padding-base)*0.75); right: var(--padding-base); font-size: 32px; font-weight: bold; cursor: pointer; transition: opacity 0.2s ease; line-height: 1; padding: 0 5px; background: none; border: none;}
         .close-btn:hover { opacity: 1; }
         #editForm .form-group { margin-bottom: var(--padding-base); } #editForm h2 { margin-bottom: calc(var(--padding-base)*1.25); } #editForm button { margin-top: 10px; margin-right: 10px; }
-
         /* Toast */
         #toastContainer { position: fixed; bottom: 25px; right: 25px; z-index: 1002; display: flex; flex-direction: column; gap: 12px; }
         .toast { padding: 15px 25px; border-radius: 8px; color: white; font-weight: 500; min-width: 280px; box-shadow: var(--shadow-md); opacity: 0; transform: translateX(100%); transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.215, 0.610, 0.355, 1); display: flex; align-items: center; gap: 10px;}
@@ -218,48 +198,13 @@
         .toast.success::before { content: '✔️'; } .toast.error::before { content: '❌'; } .toast.info::before { content: 'ℹ️'; }
         .toast.show { opacity: 1; transform: translateX(0); }
         .toast.success { background-color: var(--success-color); } .toast.error { background-color: var(--danger-color); } .toast.info { background-color: var(--info-color); }
-
         /* Utilities */
         .text-center { text-align: center; } .text-right { text-align: right; }
         .empty-message { text-align: center; padding: 40px 20px; color: var(--text-color); opacity: 0.7; font-style: italic; font-size: 1.1rem; }
         .empty-message::before { content: '🤷‍♀️'; display: block; font-size: 2.5rem; margin-bottom: 15px; opacity: 0.5; }
-
-
         /* --- RESPONSIVE --- */
-        @media (max-width: 992px) {
-             .form-grid { grid-template-columns: 1fr; gap: 0; }
-             .modal-content { max-width: 600px; }
-             .list-actions { flex-direction: column; align-items: stretch;}
-             #paginationControls { flex-direction: column; align-items: stretch; text-align: center;}
-             #paginationControls .page-nav { justify-content: center;}
-             .report-filters { flex-direction: column; align-items: stretch; gap: 15px;}
-             .report-filters .date-range-filter { flex-direction: column; gap: 15px; align-items: stretch; }
-             .report-box[style*="grid-column: span 2"] { grid-column: span 1; } /* Stack trend chart */
-        }
-        @media (max-width: 768px) {
-            body { font-size: 15px; }
-            header { padding: 12px 15px; } header h1 { font-size: 1.1rem; } .header-controls { gap: 8px; }
-            .nav-menu { display: none; flex-direction: column; background: var(--header-bg); position: absolute; top: 58px; right: 10px; width: 200px; padding: 15px; box-shadow: var(--shadow-md); border-radius: 8px; border: 1px solid var(--border-color); border-top: none; }
-            .nav-menu.show { display: flex; } .hamburger { display: block; }
-            main { margin: 15px; padding: 15px; } h2 { font-size: 1.4rem; margin-bottom: 20px; }
-            .filter-area { grid-template-columns: 1fr; gap: 15px; }
-            .date-range-filter { flex-direction: column; gap: 15px; align-items: stretch; }
-            .list-actions button { width: 100%; }
-            .dashboard-stats { grid-template-columns: 1fr; gap: 15px; } .stat-card { padding: 20px; } .stat-card p { font-size: 1.8rem; }
-            .modal-content { width: 95%; margin: 8% auto; padding: 20px; max-width: 95%; }
-            th, td { padding: 10px 8px; font-size: 0.85rem;}
-            th.col-checkbox, td.col-checkbox { padding-left: 8px; padding-right: 8px; width: 35px;}
-            .table-container { border-radius: 6px; } th:first-child { border-top-left-radius: 6px; } th:last-child { border-top-right-radius: 6px; } tbody tr:last-child td:first-child { border-bottom-left-radius: 6px; } tbody tr:last-child td:last-child { border-bottom-right-radius: 6px; }
-            table { min-width: 1100px; }
-            #toastContainer { right: 15px; bottom: 15px; width: calc(100% - 30px); gap: 10px;}
-            .toast { min-width: auto; padding: 12px 20px; }
-            .report-container { grid-template-columns: 1fr; gap: 20px;}
-            .chart-container { height: 280px; }
-            button.action-button { padding: 8px 10px; }
-             /* Action dropdown position adjustment for mobile */
-            .action-menu-dropdown { right: auto; left: 0; }
-            #bulkActionsContainer { flex-direction: column; align-items: stretch; } #bulkActionsContainer div { display: flex; width: 100%; } #bulkActionsContainer div select { flex-grow: 1; } #bulkActionsContainer button { width: 100%; justify-content: center; }
-        }
+        @media (max-width: 992px) { .form-grid { grid-template-columns: 1fr; gap: 0; } .modal-content { max-width: 600px; } .list-actions { flex-direction: column; align-items: stretch;} #paginationControls { flex-direction: column; align-items: stretch; text-align: center;} #paginationControls .page-nav { justify-content: center;} .report-filters { flex-direction: column; align-items: stretch; gap: 15px;} .report-filters .date-range-filter { flex-direction: column; gap: 15px; align-items: stretch; } .report-box[style*="grid-column: span 2"] { grid-column: span 1; } }
+        @media (max-width: 768px) { body { font-size: 15px; } header { padding: 12px 15px; } header h1 { font-size: 1.1rem; } .header-controls { gap: 8px; } .nav-menu { display: none; flex-direction: column; background: var(--header-bg); position: absolute; top: 58px; right: 10px; width: 200px; padding: 15px; box-shadow: var(--shadow-md); border-radius: 8px; border: 1px solid var(--border-color); border-top: none; } .nav-menu.show { display: flex; } .hamburger { display: block; } main { margin: 15px; padding: 15px; } h2 { font-size: 1.4rem; margin-bottom: 20px; } .filter-area { grid-template-columns: 1fr; gap: 15px; } .date-range-filter { flex-direction: column; gap: 15px; align-items: stretch; } .list-actions button { width: 100%; } .dashboard-stats { grid-template-columns: 1fr; gap: 15px; } .stat-card { padding: 20px; } .stat-card p { font-size: 1.8rem; } .modal-content { width: 95%; margin: 8% auto; padding: 20px; max-width: 95%; } th, td { padding: 10px 8px; font-size: 0.85rem;} th.col-checkbox, td.col-checkbox { padding-left: 8px; padding-right: 8px; width: 35px;} .table-container { border-radius: 6px; } th:first-child { border-top-left-radius: 6px; } th:last-child { border-top-right-radius: 6px; } tbody tr:last-child td:first-child { border-bottom-left-radius: 6px; } tbody tr:last-child td:last-child { border-bottom-right-radius: 6px; } table { min-width: 1100px; } #toastContainer { right: 15px; bottom: 15px; width: calc(100% - 30px); gap: 10px;} .toast { min-width: auto; padding: 12px 20px; } .report-container { grid-template-columns: 1fr; gap: 20px;} .chart-container { height: 280px; } button.action-button { padding: 8px 10px; } .action-menu-dropdown { right: auto; left: 0; } #bulkActionsContainer { flex-direction: column; align-items: stretch; } #bulkActionsContainer div { display: flex; width: 100%; } #bulkActionsContainer div select { flex-grow: 1; } #bulkActionsContainer button { width: 100%; justify-content: center; } }
     </style>
 </head>
 <body>
@@ -281,7 +226,7 @@
     </header>
 
     <main>
-        <!-- Dashboard Section (No Changes Needed) -->
+        <!-- Dashboard Section -->
          <section id="dashboardSection" class="active">
             <h2>Dashboard Utama</h2>
             <div class="dashboard-stats">
@@ -303,7 +248,7 @@
             </div>
         </section>
 
-        <!-- Input Section (No Changes Needed) -->
+        <!-- Input Section -->
         <section id="inputSection">
             <h2>Input Pesanan Baru</h2>
             <form id="orderForm" novalidate>
@@ -323,7 +268,7 @@
             </form>
         </section>
 
-        <!-- List Section (Table structure updated) -->
+        <!-- List Section -->
         <section id="listSection">
             <h2>List Pesanan</h2>
             <div class="list-controls">
@@ -361,9 +306,7 @@
                             <th scope="col">Aksi</th>
                         </tr>
                     </thead>
-                    <tbody id="orderTable">
-                        <!-- Rows will be rendered here by JavaScript -->
-                    </tbody>
+                    <tbody id="orderTable"></tbody>
                 </table>
             </div>
             <p id="noOrdersMsg" class="empty-message" style="display: none;">Tidak ada pesanan yang cocok dengan filter Anda.</p>
@@ -375,7 +318,7 @@
              </div>
         </section>
 
-        <!-- Report Section (No Changes Needed) -->
+        <!-- Report Section -->
          <section id="reportSection">
              <h2>Laporan Visual (Pesanan Aktif)</h2>
              <div class="report-filters"> <div> <label for="reportProjectTypeFilter">Filter Jenis Project:</label> <select id="reportProjectTypeFilter" title="Filter laporan berdasarkan jenis project"> <option value="">-- Semua Jenis Project --</option> </select> </div> <div class="date-range-filter"> <div> <label for="reportStartDateFilter">Dari Tgl Order:</label> <input type="date" id="reportStartDateFilter" title="Filter laporan dari tanggal order ini"> </div> <div> <label for="reportEndDateFilter">Sampai Tgl Order:</label> <input type="date" id="reportEndDateFilter" title="Filter laporan sampai tanggal order ini"> </div> </div> <button id="resetReportFiltersBtn" class="secondary" title="Hapus filter laporan"><span>🔄</span> Reset Filter</button> </div>
@@ -383,7 +326,7 @@
              <div class="report-box" style="margin-top: 25px;"> <h3>🔢 Total Keseluruhan (Sesuai Filter)</h3> <p><b>Total Pesanan Aktif:</b> <span id="reportTotalActiveOrders">0</span></p> <p><b>Total Nilai Aktif:</b> <span id="reportTotalActiveValue">Rp 0</span></p> <p><b>Total Pesanan Diarsipkan (Global):</b> <span id="reportTotalArchivedOrders">0</span></p> </div>
         </section>
 
-        <!-- Edit Modal (No Changes Needed) -->
+        <!-- Edit Modal -->
          <div id="editModal" class="modal"> <div class="modal-content"> <button class="close-btn" onclick="closeEditModal()" title="Tutup" aria-label="Tutup">×</button> <h2>✏️ Edit Pesanan</h2> <form id="editForm" novalidate> <input type="hidden" id="editId"> <div class="form-grid"> <div class="form-group"> <label for="editClientName">Nama Klien</label> <input type="text" id="editClientName" required aria-describedby="editClientNameError"/> <div class="error-message" id="editClientNameError"></div> </div> <div class="form-group"> <label for="editClientContact">Kontak Klien (Email/Telp)</label> <input type="text" id="editClientContact" /> </div> <div class="form-group"> <label for="editProjectType">Jenis Project</label> <select id="editProjectType" required aria-describedby="editProjectTypeError"> <option value="">-- Pilih Jenis Project --</option> <option value="Logo">Logo</option> <option value="Website">Website</option> <option value="Cerpen">Cerpen</option> <option value="Poster">Poster</option> <option value="Aplikasi Mobile">Aplikasi Mobile</option> <option value="Video Animasi">Video Animasi</option> <option value="Lainnya">Lainnya</option> </select> <div class="error-message" id="editProjectTypeError"></div> </div> <div class="form-group"> <label for="editProjectPrice">Harga Project (Rp)</label> <input type="number" id="editProjectPrice" min="0" step="1000" aria-describedby="editProjectPriceError"/> <div class="error-message" id="editProjectPriceError"></div> </div> <div class="form-group"> <label for="editOrderDate">Tanggal Order</label> <input type="date" id="editOrderDate" required aria-describedby="editOrderDateError"/> <div class="error-message" id="editOrderDateError"></div> </div> <div class="form-group"> <label for="editDeadline">Deadline</label> <input type="date" id="editDeadline" required aria-describedby="editDeadlineError"/> <div class="error-message" id="editDeadlineError"></div> </div> <div class="form-group"> <label for="editPriority">Prioritas</label> <select id="editPriority" required aria-describedby="editPriorityError"> <option value="High">Tinggi</option> <option value="Medium">Sedang</option> <option value="Low">Rendah</option> </select> <div class="error-message" id="editPriorityError"></div> </div> <div class="form-group"> <label for="editStatus">Status</label> <select id="editStatus" required> <option value="Pending">Pending</option> <option value="In Progress">In Progress</option> <option value="Completed">Completed</option> <option value="Delivered">Delivered</option> </select> </div> <div class="form-group"> <label for="editAttachmentLink">Link Lampiran/Referensi</label> <input type="url" id="editAttachmentLink" aria-describedby="editAttachmentLinkError"/> <div class="error-message" id="editAttachmentLinkError"></div> </div> <div class="form-group"> <label for="editProjectTags">Tags (Pisahkan dengan koma)</label> <input type="text" id="editProjectTags" /> </div> <div class="form-group form-group-full"> <label for="editNotes">Catatan / Brief</label> <textarea id="editNotes" rows="5"></textarea> </div> </div> <button type="submit"><span>💾</span> Simpan Perubahan</button> <button type="button" class="secondary" onclick="closeEditModal()"><span>❌</span> Batal</button> </form> </div> </div>
     </main>
 
@@ -392,7 +335,6 @@
 
     <script>
     // --- Firebase Configuration ---
-    // IMPORTANT: Replace with your actual Firebase project configuration
     const firebaseConfig = {
         apiKey: "AIzaSyDms1ruwFRJQ8x61-R9twm1s9YTgIAyhIs",
         authDomain: "manajemen-project-3d7dc.firebaseapp.com",
@@ -449,19 +391,39 @@
     async function loadData() { if (!db) { showToast("Koneksi Database Gagal!", "error"); return; } showLoading(); orders = []; try { const querySnapshot = await ordersCollection.orderBy("orderDate", "desc").orderBy("clientName", "asc").get(); querySnapshot.forEach((doc) => { const data = doc.data(); orders.push({ ...data, firestoreId: doc.id }); }); console.log(`Loaded ${orders.length} orders from Firestore.`); itemsPerPage = parseInt(localStorage.getItem('itemsPerPage') || '15', 10); $('#itemsPerPageSelect').value = itemsPerPage; populateReportProjectTypeFilter(); applyFilterAndSort(); updateDashboard(); } catch (error) { console.error("Error loading orders: ", error); showToast("Gagal memuat data pesanan.", "error"); } finally { hideLoading(); } }
     $('#orderForm').addEventListener('submit', async function(e) { e.preventDefault(); if (!db) { showToast("Koneksi Database Gagal!", "error"); return; } if (!validateForm('orderForm')) { showToast("Harap perbaiki error form.", "error"); this.querySelector('.invalid')?.focus(); return; } const newOrderData = { clientName: $('#clientName').value.trim(), clientContact: $('#clientContact').value.trim(), projectType: $('#projectType').value, projectPrice: parseFloat($('#projectPrice').value) || 0, orderDate: $('#orderDate').value, deadline: $('#deadline').value, priority: $('#priority').value, attachmentLink: $('#attachmentLink').value.trim(), projectTags: parseTags($('#projectTags').value), notes: $('#notes').value.trim(), status: "Pending", isArchived: false, }; showLoading(); try { const docRef = await ordersCollection.add(newOrderData); console.log("Document written with ID: ", docRef.id); orders.unshift({ ...newOrderData, firestoreId: docRef.id }); this.reset(); $$('#orderForm .error-message').forEach(el => el.style.display = 'none'); $$('#orderForm .invalid').forEach(el => el.classList.remove('invalid')); showToast("Pesanan berhasil ditambahkan!", "success"); currentPage = 1; populateReportProjectTypeFilter(); showSection('listSection'); } catch (error) { console.error("Error adding document: ", error); showToast("Gagal menambahkan pesanan.", "error"); } finally { hideLoading(); } });
     async function updateStatus(firestoreId, newStatus) { if (!db) { showToast("Koneksi Database Gagal!", "error"); return; } showLoading(); try { const docRef = ordersCollection.doc(firestoreId); await docRef.update({ status: newStatus }); const index = orders.findIndex(o => o.firestoreId === firestoreId); if (index !== -1) orders[index].status = newStatus; applyFilterAndSort(); showToast("Status diperbarui.", "info"); } catch (error) { console.error("Error updating status: ", error); showToast("Gagal memperbarui status.", "error"); } finally { hideLoading(); } }
-    // NEW: Update Priority Inline
-    async function updatePriority(firestoreId, newPriority) { if (!db) { showToast("Koneksi Database Gagal!", "error"); return; } showLoading(); try { const docRef = ordersCollection.doc(firestoreId); await docRef.update({ priority: newPriority }); const index = orders.findIndex(o => o.firestoreId === firestoreId); if (index !== -1) orders[index].priority = newPriority; applyFilterAndSort(); // Re-render might be needed if sorting by priority
-        showToast("Prioritas diperbarui.", "info"); } catch (error) { console.error("Error updating priority: ", error); showToast("Gagal memperbarui prioritas.", "error"); } finally { hideLoading(); } }
+    async function updatePriority(firestoreId, newPriority) { if (!db) { showToast("Koneksi Database Gagal!", "error"); return; } showLoading(); try { const docRef = ordersCollection.doc(firestoreId); await docRef.update({ priority: newPriority }); const index = orders.findIndex(o => o.firestoreId === firestoreId); if (index !== -1) orders[index].priority = newPriority; applyFilterAndSort(); showToast("Prioritas diperbarui.", "info"); } catch (error) { console.error("Error updating priority: ", error); showToast("Gagal memperbarui prioritas.", "error"); } finally { hideLoading(); } }
     async function archiveOrder(firestoreId) { if (!db) { showToast("Koneksi Database Gagal!", "error"); return; } const order = orders.find(o => o.firestoreId === firestoreId); if (!order) return; if (confirm(`Arsipkan pesanan "${order.clientName}"?`)) { showLoading(); try { const docRef = ordersCollection.doc(firestoreId); await docRef.update({ isArchived: true }); order.isArchived = true; applyFilterAndSort(); showToast(`Pesanan "${order.clientName}" diarsipkan.`, "info"); } catch (error) { console.error("Error archiving order: ", error); showToast("Gagal mengarsipkan pesanan.", "error"); } finally { hideLoading(); } } }
     async function unarchiveOrder(firestoreId) { if (!db) { showToast("Koneksi Database Gagal!", "error"); return; } showLoading(); try { const docRef = ordersCollection.doc(firestoreId); await docRef.update({ isArchived: false }); const order = orders.find(o => o.firestoreId === firestoreId); if (order) order.isArchived = false; applyFilterAndSort(); showToast(`Pesanan dipulihkan.`, "info"); } catch (error) { console.error("Error unarchiving order: ", error); showToast("Gagal memulihkan pesanan.", "error"); } finally { hideLoading(); } }
-    async function deleteOrderPermanently(firestoreId) { if (!db) { showToast("Koneksi Database Gagal!", "error"); return; } const orderIndex = orders.findIndex(o => o.firestoreId === firestoreId); if (orderIndex === -1) return; const orderToDelete = orders[orderIndex]; if (!orderToDelete.isArchived) { showToast("Hanya pesanan arsip yg bisa dihapus.", "warning"); return; } if (confirm(`HAPUS PERMANEN pesanan "${orderToDelete.clientName}"? Tidak bisa dibatalkan.`)) { showLoading(); try { const docRef = ordersCollection.doc(firestoreId); await docRef.delete(); orders.splice(orderIndex, 1); applyFilterAndSort(); showToast("Pesanan dihapus permanen.", "success"); } catch (error) { console.error("Error deleting order: ", error); showToast("Gagal menghapus pesanan.", "error"); } finally { hideLoading(); } } }
+    async function deleteOrderPermanently(firestoreId) { // Now handles both active and archived
+        if (!db) { showToast("Koneksi Database Gagal!", "error"); return; }
+        const orderIndex = orders.findIndex(o => o.firestoreId === firestoreId);
+        if (orderIndex === -1) return;
+        const orderToDelete = orders[orderIndex];
+        // Confirmation message adapted slightly depending on state
+        const confirmationMsg = `HAPUS PERMANEN pesanan "${orderToDelete.clientName}"? (${orderToDelete.isArchived ? 'Arsip' : 'Aktif'}) Tindakan ini tidak bisa dibatalkan.`;
+        if (confirm(confirmationMsg)) {
+            showLoading();
+            try {
+                const docRef = ordersCollection.doc(firestoreId);
+                await docRef.delete();
+                orders.splice(orderIndex, 1);
+                applyFilterAndSort();
+                showToast("Pesanan dihapus permanen.", "success");
+            } catch (error) {
+                console.error("Error deleting order: ", error);
+                showToast("Gagal menghapus pesanan.", "error");
+            } finally {
+                hideLoading();
+            }
+        }
+    }
     function duplicateOrder(firestoreId) { const order = orders.find(o => o.firestoreId === firestoreId); if (!order) return; showSection('inputSection'); $('#clientName').value = order.clientName; $('#clientContact').value = order.clientContact || ''; $('#projectType').value = order.projectType; $('#projectPrice').value = order.projectPrice || ''; $('#orderDate').value = ''; $('#deadline').value = ''; $('#priority').value = order.priority; $('#attachmentLink').value = order.attachmentLink || ''; $('#projectTags').value = (order.projectTags || []).join(', '); $('#notes').value = order.notes || ''; $$('#orderForm .error-message').forEach(el => el.style.display = 'none'); $$('#orderForm .invalid').forEach(el => el.classList.remove('invalid')); $('#clientName').focus(); showToast("Form diisi u/ duplikasi. Isi tanggal.", "info"); }
     async function requestRevision(firestoreId) { if (!db) { showToast("Koneksi Database Gagal!", "error"); return; } const index = orders.findIndex(order => order.firestoreId === firestoreId); if (index === -1) return; const order = orders[index]; if (order.status !== 'Completed' || order.isArchived) { showToast("Revisi hanya bisa untuk status 'Completed' yg belum diarsip.", "warning"); return; } if (confirm(`Kembalikan status pesanan "${order.clientName}" ke 'In Progress' untuk revisi?`)) { showLoading(); const timestamp = new Date().toLocaleString('id-ID'); const updatedNotes = (order.notes || '') + `\n\n-- Revisi diminta pada ${timestamp} --`; try { const docRef = ordersCollection.doc(firestoreId); await docRef.update({ status: 'In Progress', notes: updatedNotes }); orders[index].status = 'In Progress'; orders[index].notes = updatedNotes; applyFilterAndSort(); showToast(`Pesanan "${order.clientName}" dikembalikan ke In Progress.`, "success"); } catch (error) { console.error("Error requesting revision: ", error); showToast("Gagal meminta revisi.", "error"); } finally { hideLoading(); } } }
     const editModal = $('#editModal'); const editForm = $('#editForm');
     function openEditModal(firestoreId) { const order = orders.find(o => o.firestoreId === firestoreId); if (!order) return; $('#editId').value = order.firestoreId; $('#editClientName').value = order.clientName; $('#editClientContact').value = order.clientContact || ''; $('#editProjectType').value = order.projectType; $('#editProjectPrice').value = order.projectPrice || ''; $('#editOrderDate').value = order.orderDate; $('#editDeadline').value = order.deadline; $('#editPriority').value = order.priority; $('#editStatus').value = order.status; $('#editAttachmentLink').value = order.attachmentLink || ''; $('#editProjectTags').value = (order.projectTags || []).join(', '); $('#editNotes').value = order.notes || ''; $$('#editForm .error-message').forEach(el => el.style.display = 'none'); $$('#editForm .invalid').forEach(el => el.classList.remove('invalid')); editModal.style.display = "block"; $('#editClientName').focus(); }
     function closeEditModal() { editModal.style.display = "none"; editForm.reset(); }
     editForm.addEventListener("submit", async function(e) { e.preventDefault(); if (!db) { showToast("Koneksi Database Gagal!", "error"); return; } if (!validateForm('editForm')) { showToast("Perbaiki error form edit.", "error"); this.querySelector('.invalid')?.focus(); return; } const firestoreId = $('#editId').value; if (!firestoreId) { showToast("ID Pesanan tidak valid.", "error"); return; } const updatedData = { clientName: $('#editClientName').value.trim(), clientContact: $('#editClientContact').value.trim(), projectType: $('#editProjectType').value, projectPrice: parseFloat($('#editProjectPrice').value) || 0, orderDate: $('#editOrderDate').value, deadline: $('#editDeadline').value, priority: $('#editPriority').value, status: $('#editStatus').value, attachmentLink: $('#editAttachmentLink').value.trim(), projectTags: parseTags($('#editProjectTags').value), notes: $('#editNotes').value.trim(), }; showLoading(); try { const docRef = ordersCollection.doc(firestoreId); await docRef.update(updatedData); const index = orders.findIndex(o => o.firestoreId === firestoreId); if (index !== -1) { orders[index] = { ...orders[index], ...updatedData }; } closeEditModal(); applyFilterAndSort(); showToast("Pesanan berhasil diperbarui!", "success"); } catch (error) { console.error("Error updating document: ", error); showToast("Gagal memperbarui pesanan.", "error"); } finally { hideLoading(); } });
-    window.onclick = (event) => { if (event.target == editModal) closeEditModal(); /* Close modal on overlay click */ /* Close action menus on outside click */ const openMenu = document.querySelector('.action-menu-dropdown.show'); if (openMenu && !openMenu.contains(event.target) && !event.target.classList.contains('action-menu-trigger')) { openMenu.classList.remove('show'); currentOpenMenu = null; } }
+    window.onclick = (event) => { if (event.target == editModal) closeEditModal(); const openMenu = document.querySelector('.action-menu-dropdown.show'); if (openMenu && !openMenu.contains(event.target) && !event.target.closest('.action-menu-trigger')) { openMenu.classList.remove('show'); currentOpenMenu = null; } }
     window.addEventListener('keydown', (event) => { if (event.key === 'Escape') { if (editModal.style.display === "block") closeEditModal(); const openMenu = document.querySelector('.action-menu-dropdown.show'); if (openMenu) { openMenu.classList.remove('show'); currentOpenMenu = null; } } });
 
     // --- FILTER, SORT, & PAGINATION ---
@@ -470,7 +432,7 @@
     $('#prevPageBtn').addEventListener('click', () => { if (currentPage > 1) { currentPage--; applyFilterAndSort(); } }); $('#nextPageBtn').addEventListener('click', () => { const totalItems = filterOrders().length; const totalPages = Math.ceil(totalItems / itemsPerPage); if (currentPage < totalPages) { currentPage++; applyFilterAndSort(); } });
     function resetAndFilter() { currentPage = 1; applyFilterAndSort(); }
     function filterOrders() { const searchValue = $('#searchInput').value.toLowerCase(); const statusValue = $('#statusFilter').value; const priorityValue = $('#priorityFilter').value; const tagValue = $('#tagFilter').value.toLowerCase().trim(); const showArchived = $('#showArchived').checked; const startDateValue = $('#startDateFilter').value; const endDateValue = $('#endDateFilter').value; return orders.filter(order => { const isOrderArchived = order.isArchived === true; if (showArchived !== isOrderArchived) return false; const matchStatus = !statusValue || order.status === statusValue; const matchPriority = !priorityValue || order.priority === priorityValue; const matchTag = !tagValue || (order.projectTags && order.projectTags.some(tag => tag.toLowerCase().includes(tagValue))); const matchSearch = !searchValue || ( order.clientName.toLowerCase().includes(searchValue) || (order.clientContact && order.clientContact.toLowerCase().includes(searchValue)) || order.projectType.toLowerCase().includes(searchValue) || (order.notes && order.notes.toLowerCase().includes(searchValue)) || (order.projectTags && order.projectTags.some(tag => tag.toLowerCase().includes(searchValue))) ); let matchDate = true; if (startDateValue && order.orderDate < startDateValue) matchDate = false; if (endDateValue && order.orderDate > endDateValue) matchDate = false; return matchStatus && matchPriority && matchTag && matchSearch && matchDate; }); }
-    function applyFilterAndSort() { const filtered = filterOrders(); const priorityOrder = { High: 3, Medium: 2, Low: 1 }; filtered.sort((a, b) => { const col = currentSort.column; const dir = currentSort.direction === 'asc' ? 1 : -1; let valA = a[col]; let valB = b[col]; if (col === 'priority') { valA = priorityOrder[valA] || 0; valB = priorityOrder[valB] || 0; } else if (col === 'projectPrice') { valA = Number(valA) || 0; valB = Number(valB) || 0; } else if (col === 'orderDate' || col === 'deadline') { valA = valA || ''; valB = valB || ''; } else { valA = String(valA || '').toLowerCase(); valB = String(valB || '').toLowerCase(); } if (valA < valB) return -1 * dir; if (valA > valB) return 1 * dir; const idA = a.firestoreId || 0; const idB = b.firestoreId || 0; if (idA < idB) return -1; if (idA > idB) return 1; return 0; }); const totalItems = filtered.length; const totalPages = Math.ceil(totalItems / itemsPerPage) || 1; currentPage = Math.max(1, Math.min(currentPage, totalPages)); const startIndex = (currentPage - 1) * itemsPerPage; const endIndex = startIndex + itemsPerPage; const paginatedItems = filtered.slice(startIndex, endIndex); updateSortIndicators(); renderTable(paginatedItems); renderPaginationControls(currentPage, totalPages, totalItems); updateBulkActionUI(); }
+    function applyFilterAndSort() { const filtered = filterOrders(); const priorityOrder = { High: 3, Medium: 2, Low: 1 }; filtered.sort((a, b) => { const col = currentSort.column; const dir = currentSort.direction === 'asc' ? 1 : -1; let valA = a[col]; let valB = b[col]; if (col === 'priority') { valA = priorityOrder[valA] || 0; valB = priorityOrder[valB] || 0; } else if (col === 'projectPrice') { valA = Number(valA) || 0; valB = Number(valB) || 0; } else if (col === 'orderDate' || col === 'deadline') { valA = valA || ''; valB = valB || ''; } else { valA = String(valA || '').toLowerCase(); valB = String(valB || '').toLowerCase(); } if (valA < valB) return -1 * dir; if (valA > valB) return 1 * dir; const idA = a.firestoreId || ''; const idB = b.firestoreId || ''; if (idA < idB) return -1; if (idA > idB) return 1; return 0; }); const totalItems = filtered.length; const totalPages = Math.ceil(totalItems / itemsPerPage) || 1; currentPage = Math.max(1, Math.min(currentPage, totalPages)); const startIndex = (currentPage - 1) * itemsPerPage; const endIndex = startIndex + itemsPerPage; const paginatedItems = filtered.slice(startIndex, endIndex); updateSortIndicators(); renderTable(paginatedItems); renderPaginationControls(currentPage, totalPages, totalItems); updateBulkActionUI(); }
     function setSort(column) { if (currentSort.column === column) currentSort.direction = currentSort.direction === 'asc' ? 'desc' : 'asc'; else { currentSort.column = column; currentSort.direction = 'asc'; } currentPage = 1; applyFilterAndSort(); }
     function updateSortIndicators() { $$('th.th-sorted').forEach(th => th.classList.remove('th-sorted')); $$('th .sort-indicator').forEach(indicator => { indicator.textContent = ''; indicator.classList.remove('active'); }); const currentTh = $(`th[onclick*="setSort('${currentSort.column}')"]`); if (currentTh) { currentTh.classList.add('th-sorted'); const indicator = currentTh.querySelector('.sort-indicator'); if (indicator) { indicator.textContent = currentSort.direction === 'asc' ? ' ▲' : ' ▼'; indicator.classList.add('active'); } } }
     function renderPaginationControls(page, totalPages, totalItems) { const pageInfo = $('#pageInfo'); const prevBtn = $('#prevPageBtn'); const nextBtn = $('#nextPageBtn'); if (totalItems === 0) pageInfo.textContent = "Tidak ada data"; else { const startItem = (page - 1) * itemsPerPage + 1; const endItem = Math.min(startItem + itemsPerPage - 1, totalItems); pageInfo.textContent = `Menampilkan ${startItem}-${endItem} dari ${totalItems} | Hal ${page} dari ${totalPages}`; } prevBtn.disabled = page <= 1; nextBtn.disabled = page >= totalPages; $('#paginationControls').style.display = totalItems > 0 ? 'flex' : 'none'; }
@@ -485,89 +447,42 @@
             if (order.isArchived) tr.classList.add('archived'); if (selectedOrderIds.has(order.firestoreId)) tr.classList.add('selected');
             let deadlineText = formatDate(order.deadline); let deadlineClass = '';
             if (order.deadline && !order.isArchived && order.status !== "Completed" && order.status !== "Delivered") { const deadlineDate = new Date(order.deadline + 'T00:00:00'); if (!isNaN(deadlineDate.getTime())) { deadlineDate.setHours(0,0,0,0); const diffTime = deadlineDate - today; const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); if (diffDays < 0) { deadlineText += ` <span style="font-weight: bold;">(Lewat ${Math.abs(diffDays)} hr)</span>`; deadlineClass = 'deadline-past'; } else if (diffDays <= 3) { deadlineText += ` <span style="font-weight: bold;">(${diffDays} hr lagi)</span>`; deadlineClass = 'deadline-soon'; } else { deadlineText += ` <span>(${diffDays} hr lagi)</span>`; } if (deadlineClass) tr.classList.add(deadlineClass); } }
-
-            // Inline Priority Select
-            const prioritySelectHtml = `
-                <select class="inline-priority-select" onchange="updatePriority('${order.firestoreId}', this.value)" ${order.isArchived ? 'disabled' : ''} title="Ubah Prioritas">
-                    <option value="Low" ${order.priority === "Low" ? "selected" : ""}>Rendah</option>
-                    <option value="Medium" ${order.priority === "Medium" ? "selected" : ""}>Sedang</option>
-                    <option value="High" ${order.priority === "High" ? "selected" : ""}>Tinggi</option>
-                </select>`;
-
+            const prioritySelectHtml = `<select class="inline-priority-select" onchange="updatePriority('${order.firestoreId}', this.value)" ${order.isArchived ? 'disabled' : ''} title="Ubah Prioritas"> <option value="Low" ${order.priority === "Low" ? "selected" : ""}>Rendah</option> <option value="Medium" ${order.priority === "Medium" ? "selected" : ""}>Sedang</option> <option value="High" ${order.priority === "High" ? "selected" : ""}>Tinggi</option> </select>`;
             const tagsHtml = (order.projectTags && order.projectTags.length > 0) ? order.projectTags.map(tag => `<span class="tag-badge" title="${tag}">${tag.length > 15 ? tag.substring(0, 13)+'...' : tag}</span>`).join('') : '-';
             const linkHtml = order.attachmentLink ? `<a href="${sanitizeUrl(order.attachmentLink)}" target="_blank" rel="noopener noreferrer" title="${order.attachmentLink}">Link <span class="link-icon">🔗</span></a>` : '-';
-
-            // Action Dropdown Menu
             let actionMenuLis = '';
             if (order.isArchived) {
                 actionMenuLis = `<li><button class="secondary" onclick="unarchiveOrder('${order.firestoreId}')" title="Pulihkan"><span>⤴️</span> Pulihkan</button></li> <li><button class="danger" onclick="deleteOrderPermanently('${order.firestoreId}')" title="Hapus Permanen"><span>🗑️</span> Hapus Permanen</button></li>`;
             } else if (order.status === 'Completed') {
-                actionMenuLis = `<li><button onclick="openEditModal('${order.firestoreId}')" title="Edit Pesanan"><span>✏️</span> Edit</button></li> <li><button class="revision" onclick="requestRevision('${order.firestoreId}')" title="Minta Revisi"><span>🔄</span> Minta Revisi</button></li> <li><button onclick="duplicateOrder('${order.firestoreId}')" title="Duplikasi Pesanan"><span>➕</span> Duplikasi</button></li> <li><button class="warning" onclick="archiveOrder('${order.firestoreId}')" title="Arsipkan Pesanan"><span>📁</span> Arsipkan</button></li>`;
+                actionMenuLis = `<li><button onclick="openEditModal('${order.firestoreId}')" title="Edit Pesanan"><span>✏️</span> Edit</button></li> <li><button class="revision" onclick="requestRevision('${order.firestoreId}')" title="Minta Revisi"><span>🔄</span> Minta Revisi</button></li> <li><button class="info" onclick="duplicateOrder('${order.firestoreId}')" title="Duplikasi Pesanan"><span>➕</span> Duplikasi</button></li> <li><button class="warning" onclick="archiveOrder('${order.firestoreId}')" title="Arsipkan Pesanan"><span>📁</span> Arsipkan</button></li> <li><button class="danger" onclick="deleteOrderPermanently('${order.firestoreId}')" title="Hapus Permanen"><span>🗑️</span> Hapus</button></li>`; // Added Delete for active
             } else if (order.status === 'Delivered') {
-                 actionMenuLis = `<li><button onclick="openEditModal('${order.firestoreId}')" title="Edit Pesanan"><span>✏️</span> Edit</button></li> <li><button onclick="duplicateOrder('${order.firestoreId}')" title="Duplikasi Pesanan"><span>➕</span> Duplikasi</button></li> <li><button class="warning" onclick="archiveOrder('${order.firestoreId}')" title="Arsipkan Pesanan"><span>📁</span> Arsipkan</button></li>`;
+                 actionMenuLis = `<li><button onclick="openEditModal('${order.firestoreId}')" title="Edit Pesanan"><span>✏️</span> Edit</button></li> <li><button class="info" onclick="duplicateOrder('${order.firestoreId}')" title="Duplikasi Pesanan"><span>➕</span> Duplikasi</button></li> <li><button class="warning" onclick="archiveOrder('${order.firestoreId}')" title="Arsipkan Pesanan"><span>📁</span> Arsipkan</button></li> <li><button class="danger" onclick="deleteOrderPermanently('${order.firestoreId}')" title="Hapus Permanen"><span>🗑️</span> Hapus</button></li>`; // Added Delete for active
             } else { // Pending or In Progress
-                 actionMenuLis = `<li><button onclick="openEditModal('${order.firestoreId}')" title="Edit Pesanan"><span>✏️</span> Edit</button></li> <li><button class="info" onclick="duplicateOrder('${order.firestoreId}')" title="Duplikasi Pesanan"><span>➕</span> Duplikasi</button></li> <li><button class="warning" onclick="archiveOrder('${order.firestoreId}')" title="Arsipkan Pesanan"><span>📁</span> Arsipkan</button></li>`;
+                 actionMenuLis = `<li><button onclick="openEditModal('${order.firestoreId}')" title="Edit Pesanan"><span>✏️</span> Edit</button></li> <li><button class="info" onclick="duplicateOrder('${order.firestoreId}')" title="Duplikasi Pesanan"><span>➕</span> Duplikasi</button></li> <li><button class="warning" onclick="archiveOrder('${order.firestoreId}')" title="Arsipkan Pesanan"><span>📁</span> Arsipkan</button></li> <li><button class="danger" onclick="deleteOrderPermanently('${order.firestoreId}')" title="Hapus Permanen"><span>🗑️</span> Hapus</button></li>`; // Added Delete for active
             }
-            const actionDropdownHtml = `
-                <div class="action-menu-container">
-                    <button class="action-menu-trigger" aria-label="Aksi untuk ${order.clientName}" title="Aksi Lainnya">⋮</button>
-                    <ul class="action-menu-dropdown">${actionMenuLis}</ul>
-                </div>`;
-
+            const actionDropdownHtml = `<div class="action-menu-container"> <button class="action-menu-trigger" aria-label="Aksi untuk ${order.clientName}" title="Aksi Lainnya">⋮</button> <ul class="action-menu-dropdown">${actionMenuLis}</ul> </div>`;
             const notesDisplay = (order.notes || '-').substring(0, 40); const notesEllipsis = order.notes && order.notes.length > 40 ? '...' : ''; const notesTitle = order.notes || 'Tidak ada catatan';
             const contactDisplay = (order.clientContact || '-').substring(0, 20); const contactEllipsis = order.clientContact && order.clientContact.length > 20 ? '...' : ''; const contactTitle = order.clientContact || 'Tidak ada kontak';
             tr.innerHTML = `
                 <td class="col-checkbox"><input type="checkbox" class="row-checkbox" data-id="${order.firestoreId}" ${selectedOrderIds.has(order.firestoreId) ? 'checked' : ''} aria-label="Pilih ${order.clientName}"></td>
-                <td data-label="Klien">${order.clientName}</td>
-                <td data-label="Kontak" title="${contactTitle}">${contactDisplay}${contactEllipsis}</td>
-                <td data-label="Project">${order.projectType}</td>
-                <td data-label="Harga" class="col-price">${formatCurrency(order.projectPrice)}</td>
-                <td data-label="Order">${formatDate(order.orderDate)}</td>
-                <td data-label="Deadline">${deadlineText}</td>
+                <td data-label="Klien">${order.clientName}</td> <td data-label="Kontak" title="${contactTitle}">${contactDisplay}${contactEllipsis}</td>
+                <td data-label="Project">${order.projectType}</td> <td data-label="Harga" class="col-price">${formatCurrency(order.projectPrice)}</td>
+                <td data-label="Order">${formatDate(order.orderDate)}</td> <td data-label="Deadline">${deadlineText}</td>
                 <td data-label="Prioritas" class="text-center">${prioritySelectHtml}</td>
                 <td data-label="Status"> <select class="status-select" onchange="updateStatus('${order.firestoreId}', this.value)" ${order.isArchived || order.status === 'Delivered' ? 'disabled' : ''} title="Ubah Status Pesanan"> <option value="Pending" ${order.status === "Pending" ? "selected" : ""}>Pending</option> <option value="In Progress" ${order.status === "In Progress" ? "selected" : ""}>In Progress</option> <option value="Completed" ${order.status === "Completed" ? "selected" : ""}>Completed</option> <option value="Delivered" ${order.status === "Delivered" ? "selected" : ""}>Delivered</option> </select> </td>
-                <td data-label="Tags" class="col-tags">${tagsHtml}</td>
-                <td data-label="Link" class="col-link">${linkHtml}</td>
+                <td data-label="Tags" class="col-tags">${tagsHtml}</td> <td data-label="Link" class="col-link">${linkHtml}</td>
                 <td data-label="Catatan" class="col-notes" title="${notesTitle}">${notesDisplay}${notesEllipsis}</td>
-                <td data-label="Aksi">${actionDropdownHtml}</td> `; // Removed class action-buttons from TD
+                <td data-label="Aksi">${actionDropdownHtml}</td> `;
             fragment.appendChild(tr);
         });
-        tbody.appendChild(fragment); addRowActionListeners(); // Use new listener setup
+        tbody.appendChild(fragment); addRowActionListeners();
     }
 
      // --- Action Menu Dropdown Logic ---
-     function addRowActionListeners() {
-        const tableBody = $('#orderTable');
-        if (!tableBody) return;
-
-        // Using event delegation for action menu triggers
-        tableBody.addEventListener('click', (event) => {
-            const trigger = event.target.closest('.action-menu-trigger');
-            if (trigger) {
-                event.stopPropagation(); // Prevent window click listener from closing immediately
-                const dropdown = trigger.nextElementSibling;
-                closeOpenMenus(dropdown); // Close other menus
-                dropdown.classList.toggle('show');
-                currentOpenMenu = dropdown.classList.contains('show') ? dropdown : null;
-            }
-        });
-         // Add listeners for checkboxes (already handled in renderTable via addCheckboxListeners)
-         addCheckboxListeners();
-     }
-
-    function closeOpenMenus(excludeMenu = null) {
-        $$('.action-menu-dropdown.show').forEach(menu => {
-            if (menu !== excludeMenu) {
-                menu.classList.remove('show');
-            }
-        });
-        if (excludeMenu === null) { // If called by window click, reset currentOpenMenu
-             currentOpenMenu = null;
-        }
-    }
+     function addRowActionListeners() { const tableBody = $('#orderTable'); if (!tableBody) return; tableBody.addEventListener('click', (event) => { const trigger = event.target.closest('.action-menu-trigger'); if (trigger) { event.stopPropagation(); const dropdown = trigger.nextElementSibling; closeOpenMenus(dropdown); dropdown.classList.toggle('show'); currentOpenMenu = dropdown.classList.contains('show') ? dropdown : null; } }); addCheckboxListeners(); }
+    function closeOpenMenus(excludeMenu = null) { $$('.action-menu-dropdown.show').forEach(menu => { if (menu !== excludeMenu) menu.classList.remove('show'); }); if (excludeMenu === null) currentOpenMenu = null; }
 
     // --- BULK ACTIONS (FIRESTORE) ---
-    // (Bulk action logic and listeners remain the same)
     function addCheckboxListeners() { $$('.row-checkbox').forEach(checkbox => { checkbox.addEventListener('change', (e) => { const firestoreId = e.target.dataset.id; const tr = e.target.closest('tr'); if (e.target.checked) { selectedOrderIds.add(firestoreId); tr?.classList.add('selected'); } else { selectedOrderIds.delete(firestoreId); tr?.classList.remove('selected'); } updateBulkActionUI(); }); }); }
     $('#selectAllCheckbox')?.addEventListener('change', (e) => { const isChecked = e.target.checked; $$('.row-checkbox').forEach(checkbox => { const firestoreId = checkbox.dataset.id; const tr = checkbox.closest('tr'); checkbox.checked = isChecked; if (isChecked) { selectedOrderIds.add(firestoreId); tr?.classList.add('selected'); } else { selectedOrderIds.delete(firestoreId); tr?.classList.remove('selected'); } }); updateBulkActionUI(); });
     function updateBulkActionUI() { const count = selectedOrderIds.size; const container = $('#bulkActionsContainer'); const countSpan = $('#selectedCount'); const changeStatusBtn = $('#bulkChangeStatusBtn'); const archiveBtn = $('#bulkArchiveBtn'); const deleteBtn = $('#bulkDeleteBtn'); const statusSelect = $('#bulkStatusChange'); if (!container || !countSpan || !changeStatusBtn || !archiveBtn || !deleteBtn || !statusSelect) return; if (count > 0) { container.classList.add('visible'); countSpan.textContent = count; let hasActive = false; let hasArchived = false; selectedOrderIds.forEach(id => { const order = orders.find(o => o.firestoreId === id); if (order) { if (order.isArchived) hasArchived = true; else hasActive = true; } }); const currentViewIsArchived = $('#showArchived').checked; const canArchive = hasActive && !hasArchived; const canDelete = hasArchived && !hasActive && currentViewIsArchived; changeStatusBtn.disabled = !statusSelect.value || !canArchive; archiveBtn.disabled = !canArchive; deleteBtn.disabled = !canDelete; } else { container.classList.remove('visible'); countSpan.textContent = 0; changeStatusBtn.disabled = true; archiveBtn.disabled = true; deleteBtn.disabled = true; statusSelect.value = ''; } }
@@ -577,12 +492,9 @@
     $('#bulkDeleteBtn')?.addEventListener('click', async () => { if (!db) return; if (selectedOrderIds.size === 0 || !$('#showArchived').checked) return; let allArchived = true; selectedOrderIds.forEach(id => { const order = orders.find(o => o.firestoreId === id); if (order && !order.isArchived) allArchived = false; }); if (!allArchived) { showToast("Hanya pesanan arsip yg bisa dihapus masal.", "error"); return; } const count = selectedOrderIds.size; if (!confirm(`HAPUS PERMANEN ${count} pesanan arsip? Tidak bisa dibatalkan!`)) return; showLoading(); const batch = db.batch(); let deletedFirestoreIds = new Set(); selectedOrderIds.forEach(id => { const docRef = ordersCollection.doc(id); batch.delete(docRef); deletedFirestoreIds.add(id); }); try { await batch.commit(); const initialLength = orders.length; orders = orders.filter(order => !deletedFirestoreIds.has(order.firestoreId)); const changedCount = initialLength - orders.length; selectedOrderIds.clear(); applyFilterAndSort(); showToast(`${changedCount} pesanan arsip dihapus.`, "success"); } catch (error) { console.error("Error bulk deleting:", error); showToast("Gagal menghapus masal.", "error"); } finally { hideLoading(); } });
 
     // --- DASHBOARD ---
-    // (Dashboard logic remains the same)
     function updateDashboard() { const activeOrders = orders.filter(o => !o.isArchived); const statusCounts = { Pending: 0, 'In Progress': 0, Completed: 0, Delivered: 0 }; let totalActiveValue = 0; activeOrders.forEach(o => { if(statusCounts.hasOwnProperty(o.status)) statusCounts[o.status]++; totalActiveValue += Number(o.projectPrice) || 0; }); $('#pendingCount').textContent = statusCounts.Pending; $('#progressCount').textContent = statusCounts['In Progress']; $('#completedCount').textContent = statusCounts.Completed; $('#deliveredCount').textContent = statusCounts.Delivered; $('#totalValueActive').textContent = formatCurrency(totalActiveValue); const recentTable = $('#recentOrdersTable'); const noRecentMsg = $('#noRecentOrdersMsg'); recentTable.innerHTML = ""; const sortedForRecent = activeOrders.sort((a, b) => (b.firestoreId || '').localeCompare(a.firestoreId || '')); const latestFive = sortedForRecent.slice(0, 5); if (latestFive.length === 0) { noRecentMsg.style.display = 'block'; recentTable.closest('.table-container').style.display = 'none'; } else { noRecentMsg.style.display = 'none'; recentTable.closest('.table-container').style.display = ''; const fragment = document.createDocumentFragment(); latestFive.forEach(order => { const tr = document.createElement("tr"); tr.innerHTML = `<td data-label="Klien">${order.clientName}</td> <td data-label="Project">${order.projectType}</td> <td data-label="Harga" class="text-right">${formatCurrency(order.projectPrice)}</td> <td data-label="Status">${order.status}</td> <td data-label="Prioritas" class="text-center"><span class="priority-badge priority-${order.priority}">${order.priority}</span></td>`; fragment.appendChild(tr); }); recentTable.appendChild(fragment); } }
 
-
     // --- LAPORAN ---
-    // (Report generation and filter logic remains the same)
     const reportProjectTypeFilter = $('#reportProjectTypeFilter'); const reportStartDateFilter = $('#reportStartDateFilter'); const reportEndDateFilter = $('#reportEndDateFilter'); const resetReportFiltersBtn = $('#resetReportFiltersBtn');
     function populateReportProjectTypeFilter() { const types = [...new Set(orders.map(o => o.projectType))].sort(); reportProjectTypeFilter.innerHTML = '<option value="">-- Semua Jenis Project --</option>'; types.forEach(type => { const option = document.createElement('option'); option.value = type; option.textContent = type; reportProjectTypeFilter.appendChild(option); }); }
     reportProjectTypeFilter?.addEventListener('change', generateReport); reportStartDateFilter?.addEventListener('change', generateReport); reportEndDateFilter?.addEventListener('change', generateReport);
@@ -593,8 +505,7 @@
     function sortClientTable(columnIndex, direction = null) { const clientTableBody = $('#clientSummaryTable tbody'); const dir = direction ? direction : (clientReportSort.column === columnIndex ? (clientReportSort.direction === 'asc' ? 'desc' : 'asc') : 'desc'); clientReportSort = { column: columnIndex, direction: dir }; currentClientReportData.sort((a, b) => { let valA, valB; const dataA = a[1]; const dataB = b[1]; const nameA = a[0]; const nameB = b[0]; if (columnIndex === 0) { valA = nameA || ''; valB = nameB || ''; } else if (columnIndex === 1) { valA = dataA.count || 0; valB = dataB.count || 0; } else { valA = dataA.value || 0; valB = dataB.value || 0; } const sortDir = dir === 'asc' ? 1 : -1; if (valA < valB) return -1 * sortDir; if (valA > valB) return 1 * sortDir; return 0; }); clientTableBody.innerHTML = ''; const fragment = document.createDocumentFragment(); currentClientReportData.slice(0, 10).forEach(([name, data]) => { const tr = document.createElement('tr'); tr.innerHTML = `<td>${name}</td><td class="text-center">${data.count}</td><td class="text-right">${formatCurrency(data.value)}</td>`; fragment.appendChild(tr); }); clientTableBody.appendChild(fragment); }
 
     // --- EXPORT TO CSV ---
-    // (Export logic remains the same - acts on local data)
-    function exportToCSV() { const showArchived = $('#showArchived').checked; const ordersToExport = orders.filter(order => order.isArchived === showArchived); if (ordersToExport.length === 0) { showToast(`Tidak ada data ${showArchived ? 'arsip' : 'aktif'} untuk diekspor.`, "info"); return; } const headers = ['ID', 'Nama Klien', 'Kontak Klien', 'Jenis Project', 'Harga', 'Tanggal Order', 'Deadline', 'Prioritas', 'Status', 'Tags', 'Link Lampiran', 'Catatan']; const rows = ordersToExport.map(order => [ order.firestoreId, /* Use firestoreId */ `"${(order.clientName || '').replace(/"/g, '""')}"`, `"${(order.clientContact || '').replace(/"/g, '""')}"`, order.projectType, order.projectPrice || 0, order.orderDate, order.deadline, order.priority, order.status, `"${(order.projectTags || []).join(', ').replace(/"/g, '""')}"`, `"${(order.attachmentLink || '').replace(/"/g, '""')}"`, `"${(order.notes || '').replace(/"/g, '""')}"` ]); let csvContent = "data:text/csv;charset=utf-8," + headers.join(",") + "\n" + rows.map(e => e.join(",")).join("\n"); const encodedUri = encodeURI(csvContent); const link = document.createElement("a"); link.setAttribute("href", encodedUri); const timestamp = new Date().toISOString().slice(0, 10); const fileType = showArchived ? 'arsip' : 'aktif'; link.setAttribute("download", `project_klien_${fileType}_${timestamp}.csv`); document.body.appendChild(link); link.click(); document.body.removeChild(link); showToast(`Data ${fileType} diekspor ke CSV.`, "success"); }
+    function exportToCSV() { const showArchived = $('#showArchived').checked; const ordersToExport = orders.filter(order => order.isArchived === showArchived); if (ordersToExport.length === 0) { showToast(`Tidak ada data ${showArchived ? 'arsip' : 'aktif'} untuk diekspor.`, "info"); return; } const headers = ['ID', 'Nama Klien', 'Kontak Klien', 'Jenis Project', 'Harga', 'Tanggal Order', 'Deadline', 'Prioritas', 'Status', 'Tags', 'Link Lampiran', 'Catatan']; const rows = ordersToExport.map(order => [ order.firestoreId, `"${(order.clientName || '').replace(/"/g, '""')}"`, `"${(order.clientContact || '').replace(/"/g, '""')}"`, order.projectType, order.projectPrice || 0, order.orderDate, order.deadline, order.priority, order.status, `"${(order.projectTags || []).join(', ').replace(/"/g, '""')}"`, `"${(order.attachmentLink || '').replace(/"/g, '""')}"`, `"${(order.notes || '').replace(/"/g, '""')}"` ]); let csvContent = "data:text/csv;charset=utf-8," + headers.join(",") + "\n" + rows.map(e => e.join(",")).join("\n"); const encodedUri = encodeURI(csvContent); const link = document.createElement("a"); link.setAttribute("href", encodedUri); const timestamp = new Date().toISOString().slice(0, 10); const fileType = showArchived ? 'arsip' : 'aktif'; link.setAttribute("download", `project_klien_${fileType}_${timestamp}.csv`); document.body.appendChild(link); link.click(); document.body.removeChild(link); showToast(`Data ${fileType} diekspor ke CSV.`, "success"); }
 
     // --- UI & NAVIGATION ---
     function toggleMenu() { $('#navMenu').classList.toggle('show'); }
@@ -603,8 +514,6 @@
         $('#navMenu').classList.remove('show'); $$('main section').forEach(sec => sec.classList.remove('active')); const activeSection = $(`#${sectionId}`);
         if (activeSection) { activeSection.classList.add('active'); setActiveLink(sectionId); $('main').scrollTo({ top: 0, behavior: 'auto' }); }
         else { console.warn(`Section ${sectionId} not found.`); $('#dashboardSection').classList.add('active'); setActiveLink('dashboardSection'); }
-        // Run section-specific logic AFTER it's displayed
-        // Wrap in try...catch in case of errors during section activation
         try {
             switch (sectionId) {
                 case "dashboardSection": updateDashboard(); break;
@@ -612,31 +521,13 @@
                 case "listSection": applyFilterAndSort(); break;
                 case "inputSection": $('#orderForm').reset(); $$('#orderForm .error-message').forEach(el => el.style.display = 'none'); $$('#orderForm .invalid').forEach(el => el.classList.remove('invalid')); $('#clientName').focus(); break;
             }
-        } catch(error) {
-            console.error(`Error activating section ${sectionId}:`, error);
-            showToast(`Gagal memuat bagian ${sectionId}.`, "error");
-        }
+        } catch(error) { console.error(`Error activating section ${sectionId}:`, error); showToast(`Gagal memuat bagian ${sectionId}.`, "error"); }
     }
 
     // --- INITIAL LOAD ---
     document.addEventListener('DOMContentLoaded', () => {
-        if (!db) {
-            showToast("Koneksi Database Gagal! Fitur tidak akan berjalan.", "error", 10000);
-            showLoading = () => {}; hideLoading = () => {};
-            $('#loadingOverlay').innerHTML = '<p style="color: red; font-weight: bold;">Koneksi Database Gagal</p>';
-            $('#loadingOverlay').style.backgroundColor = 'rgba(255,200,200,0.8)';
-            showLoading();
-            return;
-        }
-        // Load data first, then show UI
-        loadData().then(() => {
-             showSection('dashboardSection');
-        }).catch(err => {
-             console.error("Initial data load failed:", err);
-             showToast("Gagal memuat data awal.", "error");
-             hideLoading(); // Ensure loading is hidden even on error
-             // Potentially show a minimal UI or error state
-        });
+        if (!db) { showToast("Koneksi Database Gagal! Fitur tidak akan berjalan.", "error", 10000); showLoading = () => {}; hideLoading = () => {}; $('#loadingOverlay').innerHTML = '<p style="color: red; font-weight: bold;">Koneksi Database Gagal</p>'; $('#loadingOverlay').style.backgroundColor = 'rgba(255,200,200,0.8)'; showLoading(); return; }
+        loadData().then(() => { showSection('dashboardSection'); }).catch(err => { console.error("Initial data load failed:", err); showToast("Gagal memuat data awal.", "error"); hideLoading(); });
     });
 
     </script>
